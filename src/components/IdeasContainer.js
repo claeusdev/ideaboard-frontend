@@ -37,6 +37,12 @@ class IdeasContainer extends Component {
       })
       .catch((error) => console.log(error));
   };
+
+  updateIdea = (idea) => {
+    const ideaIndex = this.state.ideas.findIndex((x) => x.id === idea.id);
+    const ideas = update(this.state.ideas, { [ideaIndex]: { $set: idea } });
+    this.setState({ ideas });
+  };
   render() {
     return (
       <div>
