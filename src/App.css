@@ -30,3 +30,14 @@
     transform: rotate(360deg);
   }
 }
+
+.tile {
+  width: 200px;
+  margin: 10px;
+  min-height: 200px;
+}
+
+.input {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
