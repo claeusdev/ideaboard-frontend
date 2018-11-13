@@ -11,17 +11,22 @@ class IdeaForm extends Component {
   }
 
   handleInput = (e) => {
+    this.props.resetNotification();
     this.setState({ [e.target.name]: e.target.value });
   };
 
   handleBlur = () => {
     const idea = { title: this.state.title, body: this.state.body };
     axios
-      .put(`http://localhost:4000/api/v1/ideas/${this.props.idea.id}`, {
-        idea: idea
-      })
+      .put(
+        `https://shrouded-gorge-19944.herokuapp.com/api/v1/ideas/${
+          this.props.idea.id
+        }`,
+        {
+          idea: idea
+        }
+      )
       .then((response) => {
-        console.log(response);
         this.props.updateIdea(response.data);
       })
       .catch((error) => console.log(error));
@@ -34,6 +39,7 @@ class IdeaForm extends Component {
           <input
             value={this.state.title}
             onChange={this.handleInput}
+            ref={this.props.titleRef}
             name="title"
             type="text"
             className="input"

@@ -9,13 +9,14 @@ class IdeasContainer extends Component {
     super(props);
     this.state = {
       ideas: [],
-      editingIdeaId: null
+      editingIdeaId: null,
+      notification: ''
     };
   }
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/api/v1/ideas')
+      .get('https://shrouded-gorge-19944.herokuapp.com/api/v1/ideas')
       .then((response) => {
         console.log(response);
         console.log(response);
@@ -41,7 +42,32 @@ class IdeasContainer extends Component {
   updateIdea = (idea) => {
     const ideaIndex = this.state.ideas.findIndex((x) => x.id === idea.id);
     const ideas = update(this.state.ideas, { [ideaIndex]: { $set: idea } });
-    this.setState({ ideas });
+    this.setState({ ideas, notification: 'All changes saved' });
+  };
+
+  deleteIdea = (id) => {
+    axios
+      .delete(`https://shrouded-gorge-19944.herokuapp.com/${id}`)
+      .then((response) => {
+        const ideaIndex = this.state.ideas.findIndex((x) => x.id === id);
+        const ideas = update(this.state.ideas, {
+          $splice: [[ideaIndex, 1]]
+        });
+        this.setState({
+          ideas
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  resetNotification = () => {
+    this.setState({ notification: '' });
+  };
+
+  enableEditing = (id) => {
+    this.setState({ editingIdeaId: id }, () => {
+      this.title.focus();
+    });
   };
   render() {
     return (
@@ -51,12 +77,28 @@ class IdeasContainer extends Component {
           className="newIdeaButton f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-blue">
           Add new idea
         </button>
+        <span className="notification">{this.state.notification}</span>
         <div className="ideas">
           {this.state.ideas.map((idea) => {
             if (this.state.editingIdeaId === idea.id) {
-              return <IdeaForm idea={idea} key={idea.id} />;
+              return (
+                <IdeaForm
+                  idea={idea}
+                  key={idea.id}
+                  updateIdea={this.updateIdea}
+                  titleRef={(input) => (this.title = input)}
+                  resetNotification={this.resetNotification}
+                />
+              );
             } else {
-              return <Idea key={idea.id} idea={idea} />;
+              return (
+                <Idea
+                  key={idea.id}
+                  idea={idea}
+                  onClick={this.enableEditing}
+                  onDelete={this.deleteIdea}
+                />
+              );
             }
           })}
         </div>
