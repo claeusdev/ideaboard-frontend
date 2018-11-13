@@ -27,7 +27,7 @@ class IdeasContainer extends Component {
 
   addNewIdea = () => {
     axios
-      .post('http://localhost:4000/api/v1/ideas', {
+      .post('https://shrouded-gorge-19944.herokuapp.com/api/v1/ideas', {
         idea: { title: '', body: '' }
       })
       .then((response) => {
