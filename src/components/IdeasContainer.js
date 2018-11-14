@@ -79,7 +79,7 @@ class IdeasContainer extends Component {
           <button
             onClick={this.addNewIdea}
             className="newIdeaButton f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-blue">
-            Add new idea
+            Suggest something fun
           </button>
         </nav>
 
