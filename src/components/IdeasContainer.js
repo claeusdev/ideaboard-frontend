@@ -11,7 +11,8 @@ class IdeasContainer extends Component {
     this.state = {
       ideas: [],
       editingIdeaId: null,
-      notification: ''
+      notification: '',
+      transitionIn: false
     };
   }
 
@@ -43,7 +44,11 @@ class IdeasContainer extends Component {
   updateIdea = (idea) => {
     const ideaIndex = this.state.ideas.findIndex((x) => x.id === idea.id);
     const ideas = update(this.state.ideas, { [ideaIndex]: { $set: idea } });
-    this.setState({ ideas, notification: 'All changes saved' });
+    this.setState({
+      ideas,
+      notification: 'All changes saved',
+      transitionIn: true
+    });
   };
 
   deleteIdea = (id) => {
@@ -62,7 +67,7 @@ class IdeasContainer extends Component {
   };
 
   resetNotification = () => {
-    this.setState({ notification: '' });
+    this.setState({ notification: '', transitionIn: false });
   };
 
   enableEditing = (id) => {
@@ -83,7 +88,10 @@ class IdeasContainer extends Component {
             Suggest something fun
           </button>
         </nav>
-        <Notification notification={this.state.notification} />
+        <Notification
+          in={this.state.transitionIn}
+          notification={this.state.notification}
+        />
         <div className="ideas">
           {this.state.ideas.map((idea) => {
             if (this.state.editingIdeaId === idea.id) {
