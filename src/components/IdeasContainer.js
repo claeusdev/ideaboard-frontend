@@ -72,11 +72,17 @@ class IdeasContainer extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={this.addNewIdea}
-          className="newIdeaButton f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-blue">
-          Add new idea
-        </button>
+        <nav class="pa3 pa4-ns">
+          <a class="link dim black b f6 f5-ns dib mr3" href="#" title="Home">
+            Sugest.fun
+          </a>
+          <button
+            onClick={this.addNewIdea}
+            className="newIdeaButton f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-blue">
+            Add new idea
+          </button>
+        </nav>
+
         <span className="notification">{this.state.notification}</span>
         <div className="ideas">
           {this.state.ideas.map((idea) => {
