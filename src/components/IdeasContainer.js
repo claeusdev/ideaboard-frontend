@@ -47,7 +47,7 @@ class IdeasContainer extends Component {
 
   deleteIdea = (id) => {
     axios
-      .delete(`https://shrouded-gorge-19944.herokuapp.com/${id}`)
+      .delete(`https://shrouded-gorge-19944.herokuapp.com/api/v1/ideas/${id}`)
       .then((response) => {
         const ideaIndex = this.state.ideas.findIndex((x) => x.id === id);
         const ideas = update(this.state.ideas, {
