@@ -78,15 +78,17 @@ class IdeasContainer extends Component {
   render() {
     return (
       <div>
-        <nav class="pa3 pa4-ns">
-          <a class="link dim black b f6 f5-ns dib mr3" href="#" title="Home">
+        <nav className="dt w-100 border-box pa3 ph5-ns">
+          <a className="dtc v-mid mid-gray link dim w-25" href="/" title="Home">
             Sugest.fun
           </a>
-          <button
-            onClick={this.addNewIdea}
-            className="newIdeaButton f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-blue">
-            Suggest something fun
-          </button>
+          <div className="dtc v-mid w-75 tr">
+            <button
+              onClick={this.addNewIdea}
+              className="newIdeaButton f6 f5-ns fw6 dib ba b--black-20 bg-blue white ph3 ph4-ns pv2 pv3-ns br2 grow no-underline">
+              Suggest something fun
+            </button>
+          </div>
         </nav>
         <Notification
           in={this.state.transitionIn}
