@@ -51,7 +51,7 @@ class IdeaForm extends Component {
             name="body"
             cols="30"
             rows="10"
-            placeholder="Describe your idea"
+            placeholder="What makes it fun?"
             className="input"
           />
         </form>
