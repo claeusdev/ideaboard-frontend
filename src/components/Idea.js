@@ -10,9 +10,9 @@ class Idea extends Component {
   render() {
     return (
       <div className="dib br3 grow tc bg-light-yellow bw2 shadow-5 pa2 tile">
-        <span className="deleteIdea" onClick={this.handleDeleteIdea}>
+        {/* <span className="deleteIdea" onClick={this.handleDeleteIdea}>
           X
-        </span>
+        </span> */}
         <h3 onClick={this.handleClick}>{this.props.idea.title}</h3>
         <p onClick={this.handleClick}>{this.props.idea.body}</p>
       </div>
